@@ -5,12 +5,12 @@ from flask_blog import app
 @app.route('/')
 def show_entries():
     if not session.get('logged_in'):
-        return redirect('/login')
+        return redirect(url_for('login'))
     return render_template('entries/index.html')
 
 # /loginのURLにリクエストがあったときのルーティング処理
 
-@app.route('/login',methods = ['GET','Post'])
+@app.route('/login',methods = ['GET','POST'])
 def login():
     if request.method == 'POST':
         if request.form['username'] != app.config['USERNAME']:
@@ -21,7 +21,7 @@ def login():
             # ログイン成功後に=Trueにセット、リクエストのたびにチェックすることでログインしているかを判別することができる
             session['logged_in'] = True
             flash('ログインしました')
-            return redirect('/')
+            return redirect(url_for('show_entries'))
     return render_template('login.html')
 
 @app.route('/logout')
@@ -29,6 +29,6 @@ def logout():
     # logoutしたらsessionを削除
     session.pop('logged_in',None)
     flash('ログアウトしました')
-    return redirect('/')
+    return redirect(url_for('show_entries'))
     
         
