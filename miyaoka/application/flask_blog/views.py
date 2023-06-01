@@ -10,8 +10,10 @@ def login():
     if request.method == 'POST':
         if request.form['username'] != app.config['USERNAME']:
             print('ユーザ名が異なります')
+            print(request.form['username'])
         elif request.form['password'] != app.config['PASSWORD']:
             print('パスワードが異なります')
+            print(request.form['password'])
         else:
             return redirect('/')
     return render_template('login.html')
