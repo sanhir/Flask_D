@@ -14,12 +14,13 @@ def show_entries():
 def login():
     if request.method == 'POST':
         if request.form['username'] != app.config['USERNAME']:
-            print('ユーザー名が異なります')
+            flash('ユーザー名が異なります')
         elif request.form['password'] != app.config['PASSWORD']:
-            print('パスワードが異なります')
+            flash('パスワードが異なります')
         else:
             # ログイン成功後に=Trueにセット、リクエストのたびにチェックすることでログインしているかを判別することができる
             session['logged_in'] = True
+            flash('ログインしました')
             return redirect('/')
     return render_template('login.html')
 
@@ -27,6 +28,7 @@ def login():
 def logout():
     # logoutしたらsessionを削除
     session.pop('logged_in',None)
+    flash('ログアウトしました')
     return redirect('/')
     
         
