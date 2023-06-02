@@ -2,7 +2,7 @@ from flask import request, redirect, url_for, render_template, flash, session
 from flask_calc import app
 from decimal import Decimal, ROUND_HALF_UP
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def show_entries():
     return render_template("entries/index.html")
 
@@ -16,7 +16,7 @@ def output():
         flash("給与には最大9,999,999,999まで入力可能です。")
         return redirect(url_for("show_entries"))
     else:
-        salary = int(request.form["salary"])
+        salary = int(salary)
         if salary < 0:
             flash("給与にはマイナスの値は入力できません。")
             return redirect(url_for("show_entries"))
