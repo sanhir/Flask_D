@@ -1,8 +1,3 @@
-DEBUG = True
-SECRET_KEY = 'secret key'
-USERNAME = 'Kumi'
-PASSWORD = 'duel-stanby!'
-
 import os 
 SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{user}:{password}@{host}/{database}?charset=utf8".format(**{
     "user":os.getenv("DB_USER","root"),
@@ -10,4 +5,8 @@ SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{user}:{password}@{host}/{database}?c
     "host":os.getenv("DB_HOST","localhost"),
     "database":os.getenv("DB_DATABASE","ENSHU")
     })
-SQLALCHEMY_TRACK_MODIFICATION = False
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+DEBUG = True
+SECRET_KEY = 'secret key'
+USERNAME = 'Kumi'
+PASSWORD = 'duel-stanby!'
