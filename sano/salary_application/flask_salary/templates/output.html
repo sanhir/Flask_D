@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block body %}
+<div>
+    <p>給与：{{salary}}円の場合、支給額：{{pay_amount}}円、税額：{{tax}}円です。</p>
+</div>
+<form action="{{url_for('show_home')}}" method=get>
+    <button type="submit" class="btn btn-primary">戻る</button>
+</form>
+{% endblock %}
