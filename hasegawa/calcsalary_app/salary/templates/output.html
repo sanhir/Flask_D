@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="{{url_for('input')}}" method=get>
+    <p>{{ "給与：{:,}円の場合、支給額：{:,}円、税額：{:,}円です。".format(salary, after_tax_pay, tax)}}</p>
+
+    <a href="{{url_for('input')}}" class="btn btn-primary" role="button" data-bs-toggle="button">戻る</a>
+</form>
+{% endblock %}
