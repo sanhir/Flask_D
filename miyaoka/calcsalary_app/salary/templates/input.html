@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="{{url_for('logout')}}" method=post>
+        <div class="form-group">
+        <label for="InputPassword">給料</label>
+        <input type="number" class="form-control" id="InputPassword" name=salary>
+        </div>
+    
+        <button type="submit" class="btn btn-primary">送信</button>
+        </form>
+{% endblock %}
