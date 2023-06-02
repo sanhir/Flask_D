@@ -9,7 +9,25 @@
 
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{url_for('show_entries')}}">給与計算アプリ</a>
+        <h1>給与計算アプリ</h1>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+    </nav>
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-info" role = "alert">
+        {{message}}
+    </div>
+    {% endfor %}
+
+    <div class="calc_body">
+        <form action="{{url_for('calc')}}" method=post>
+            <div class="form-group">
+                <label for="InputSalary">給与</label>
+                <input type="number" class="form-control" id="InputSalary" name="salary">
+            </div>
+            <button type="submit" class="btn btn-primary">計算する</button>
+        </form>
+    </div>
+</div>
