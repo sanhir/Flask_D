@@ -36,5 +36,5 @@ def output():
 
         session["input_salary"] = ""
         return render_template('output.html',salary=salary_str, pay_amount=pay_str, tax=tax_str)
-    return render_template('index.html')
+    return redirect(url_for('show_home'))
 
