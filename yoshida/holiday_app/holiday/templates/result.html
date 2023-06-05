@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="{{url_for('input')}}" method="post">
+    {% if flag =='new' %}
+    <p>{{ holi_date }}（{{ holi_text }}）が登録されました</p>
+    {% elif flag =='update' %}
+    <p>{{ holi_date }}は「{{ holi_text }}」に更新されました</p>
+    {% elif flag == 'delete' %}
+    <p>{{ holi_date }}（{{ holi_text }}）は、削除されました</p>
+    {% endif %}
+    <button type="submit" class="btn btn-secondary">戻る</button>
+</form>
+{% endblock %}
