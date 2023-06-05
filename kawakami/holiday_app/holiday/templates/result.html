@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="{{url_for('home')}}" method=post>
+    <div class="form-group">
+        <label for="InputTitle">処理結果</label>
+        <p> 給与：{{holiday}}({{holiday_text}})が登録されました。</p>
+    </div>
+
+    <div class="btn-group">
+        <!--戻るボタン-->
+        <form action="input.html" method="post">
+            <button type="submit" class="btn btn-back" name="btn" value="back">戻る</button>
+        </form>
+    </div>
+
+</form>
+
+
+
+{% endblock %}
