@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="{{url_for('new_or_update')}}" method="post">
+    <div class="form-group">
+        <label for="InputDate">祝日・日付</label>
+        <input type="date" class="form-control" id="InputDate" name="date">
+    </div>
+
+    <div class="form-group">
+        <label for="InputText">祝日・テキスト</label>
+        <input class="form-control" name="text" id="InputText"></input>
+    </div>
+
+    <button type="submit" class="btn btn-primary">新規登録・更新</button>
+    <button type="submit" class="btn btn-danger" formaction="{{ url_for('delete')}}">削除</button>
+</form>
+<br><br>
+<form action="{{ url_for('list') }}">
+    <button type="submit" class="btn btn-secondary">一覧出力</button>
+</form>
+{% endblock %}

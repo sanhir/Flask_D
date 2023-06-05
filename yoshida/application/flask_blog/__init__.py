@@ -13,4 +13,3 @@ from flask_blog.views.entries import entry
 app.register_blueprint(entry, url_prefix='/users')
 
 from flask_blog.views import views
-
