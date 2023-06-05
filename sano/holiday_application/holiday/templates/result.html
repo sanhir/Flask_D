@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block body %}
+<div>
+    処理結果
+    <p>{{session.get("info_msg")}}</p>
+</div>
+
+<a href="{{url_for('input')}}" class="btn btn-primary" role="button" data-bs-toggle="button">戻る</a>
+{% endblock%}
