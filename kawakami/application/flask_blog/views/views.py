@@ -25,4 +25,3 @@ def logout():
     flash('ログアウトしました')
     return redirect(url_for('show_entries'))
     
-        
