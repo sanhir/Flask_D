@@ -3,7 +3,17 @@ from flask_blog import app
 from functools import wraps
 from flask import Blueprint
 
-@app.route("/login", methods=["GET", "POST"])
+view = Blueprint('view', __name__)
+
+def login_required(view):
+    @wraps(view)
+    def inner(*args, **kwargs):
+        if not session.get("logged_in"):
+            return redirect(url_for('view.login'))
+        return view(*args, **kwargs)
+    return inner
+
+@view.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         if request.form["username"] != app.config["USERNAME"]:
