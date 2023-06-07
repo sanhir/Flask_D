@@ -5,11 +5,15 @@
 {% for entry in entries %}
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">{{ entry.date }}{{entry.text}}</h5>
+        <h5 class="card-title">{{ entry.holi_date }}：{{entry.holi_text}}</h5>
     </div>
 </div>
 {% else %}
 祝日が登録されてありません
 {% endfor %}
 </ul>
+<br><br>
+<a href="{{url_for('show_entries')}}">
+    <button type="button" class="btn btn-primary">戻る</button>
+</a>
 {% endblock %}
