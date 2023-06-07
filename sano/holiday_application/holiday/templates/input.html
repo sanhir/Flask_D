@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="{{ url_for('process_input') }}" method=post class=add-holiday id="holiday">
+    <div class="form-group">
+        <label for="InputTitle">祝日　日付</label>
+        <input type="date" class="form-control" id="InputDate" name=holiday value="{{session.get('date')}}" form="holiday">
+    </div>
+
+    <div class="form-group">
+        <labal for="InputText">祝日　テキスト</labal>
+        <input type="text" class="form-control" id="InputText" name=holiday_text maxlength="20" value="{{session.get('text')}}" form="holiday">
+    </div>
+
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary" name=button value="insert_update">新規登録・更新</button>
+    </div>
+    <div class="btn-group">
+        <button type="submit" class="btn btn-danger" name=button value="delete"  style="margin-left:10px">削除</button>
+    </div>
+</form>
+<br>
+
+<form action="{{ url_for('list_holiday') }}" method=get class=list-holiday>
+    <button type="submit" class="btn btn-secondary">一覧出力</button>
+</form>
+
+{% endblock%}
