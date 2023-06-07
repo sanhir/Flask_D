@@ -7,8 +7,8 @@ class Entry(db.Model):
     holi_text = db.Column(db.String(20))
 
     def __init__(self, holi_date=None, holi_text=None):
-        self.date = holi_date
-        self.text = holi_text
+        self.holi_date = holi_date
+        self.holi_text = holi_text
 
     # def __repr__(self):
     #     return '<Entry date:{} text:{}>'.format( self.date, self.text)
