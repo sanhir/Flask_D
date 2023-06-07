@@ -1,5 +1,4 @@
 from holiday import db
-from datetime import datetime
 
 class Holiday(db.Model):
     __tablename__ = 'holiday'

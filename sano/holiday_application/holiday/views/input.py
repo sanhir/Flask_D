@@ -14,15 +14,21 @@ def input():
 
 @app.route('/holidays/update', methods=['POST'])
 def process_input():
-    if ("holiday" not  in request.form ) or (request.form["holiday"] == ""):
+    # バリデーション処理のためにsessionに空白文字を格納
+    if "holiday" not  in request.form:
         session["holiday"] = ""
     else:
         session["holiday"] = request.form["holiday"]
-    if ("holiday_text" not  in request.form ) or (request.form["holiday_text"] == ""):
+    if "holiday_text" not  in request.form:
         session["holiday_text"] = ""
     else:
         session["holiday_text"] = request.form["holiday_text"]
 
+    if not model_exists(Holiday):
+        flash("祝日マスタが存在しません")
+        return redirect(url_for('input'))
+
+    # 処理
     if request.form["button"] == "insert_update":
         return add_holiday()
     elif request.form["button"] == "delete":
@@ -31,6 +37,7 @@ def process_input():
         return redirect(url_for('input'))
 
 def add_holiday():
+    '''祝日の新規登録・更新を行う'''
     # 入力のバリデーション
     if session["holiday"] == "" or session["holiday_text"] == "":
         if session["holiday"] == "":
@@ -51,7 +58,6 @@ def add_holiday():
         )
         db.session().add(holiday)
         db.session().commit()
-        # flash(f"{session['date']}は、祝日マスタに登録されていません")
         session["info_msg"] = f"{session['holiday'] }（{session['holiday_text']}）が登録されました。"
         return redirect(url_for('show_result'))
     # 祝日マスタに存在する場合、更新
@@ -66,7 +72,14 @@ def add_holiday():
         session["info_msg"] = f"{session['holiday'] }は「{session['holiday_text']}」に更新されました。"
         return redirect(url_for('show_result'))
     
+
+def model_exists(model_class):
+    engine = db.get_engine()
+    return model_class.metadata.tables[model_class.__tablename__].exists(engine)
+
+
 def delete_holiday():
+    '''登録されている祝日の削除を行う'''
     print(request.form)
      # 入力のバリデーション
     if session["holiday"] == "":
