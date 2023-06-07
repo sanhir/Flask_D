@@ -80,7 +80,6 @@ def model_exists(model_class):
 
 def delete_holiday():
     '''登録されている祝日の削除を行う'''
-    print(request.form)
      # 入力のバリデーション
     if session["holiday"] == "":
         flash("日付を入力してください")
