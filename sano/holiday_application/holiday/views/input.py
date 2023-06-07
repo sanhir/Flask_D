@@ -84,6 +84,9 @@ def delete_holiday():
     if session["holiday"] == "":
         flash("日付を入力してください")
         return redirect(url_for('input'))
+    
+    print(session["holiday"])
+    print(type(session["holiday"]))
 
     holiday =  Holiday.query.get(session["holiday"])
 
