@@ -27,13 +27,14 @@ def add_entry():
         entry.holi_date = datetime.datetime.strptime(entry.holi_date,'%Y-%m-%d')
     #追加、更新処理
     if value == "add":
-        db.session.merge(entry)
-        db.session.commit()
-        flash('新しく祝日が登録されました')
-        return redirect(url_for('show_entries'))
+        return update_entry(entry)
+        # db.session.merge(entry)
+        # db.session.commit()
+        # # flash('新しく祝日が登録されました')
+        # return render_template('result.html',entry = entry, value = '追加')
     #削除処理
     elif value == "delete":
-          return delete_entry(entry.holi_date)
+          return delete_entry(entry)
     #一覧表示処理
     elif value == 'show':
         #   entries = Entry.query.order_by(Entry.holi_date.desc()).all()
@@ -54,21 +55,30 @@ def error_flash(entry,value):
     return True
 
 #追加、更新処理
-@app.route('/<int:id>/update', methods=['POST'])
-def update_entry(id):
-    entry = Entry.query.get(id)
-    entry.date = request.form['date']
-    entry.text = request.form['text']
+# @app.route('/<int:id>/update', methods=['POST'])
+def update_entry(entry):
+    al_res = Entry.query.get(entry.holi_date)
+    if al_res == None:
+         print("aiueo")
     db.session.merge(entry)
     db.session.commit()
-    flash('祝日が更新されました')
-    return redirect(url_for('show_entries'))
+    print(al_res)
+    print("122345")
+    if al_res == None:
+        flash('新しく祝日が登録されました')
+        return render_template('result.html',entry = entry, value = '登録')
+    else:
+        flash('祝日が更新されました')
+        return render_template('result.html',entry=entry,value = '更新')
 
 #削除処理
 @app.route('/<int:id>/delete', methods=['POST'])
-def delete_entry(holi_date):
-    entry = Entry.query.get(holi_date)
-    db.session.delete(entry)
+def delete_entry(entry):
+    entry_holi_date = Entry.query.get(entry.holi_date)
+    if entry_holi_date == None:
+         flash('{0}:{1}は祝日として登録されていません'.format(entry.holi_date,entry.holi_text))
+         return redirect(url_for('show_entries'))
+    db.session.delete(entry_holi_date)
     db.session.commit()
     flash('祝日が削除されました')
-    return render_template('result.html',entry=entry)
+    return render_template('result.html',entry=entry_holi_date,value = '削除')
