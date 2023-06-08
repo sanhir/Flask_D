@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+<ul class="list-group list-group-flush">
+    <table class="table">
+        <thead>
+            <tr class=" table table-primary">
+                <th scope="col">祝日</th>
+                <th scope="col">テキスト</th>
+            </tr>
+        </thead>   
+        <tbody>
+            {% for row in holidaylist %}
+            <tr>
+                <th scope="col">{{row.holi_date }}</th>
+                <th scope="col">{{row.holi_text}}</th>
+            </tr>
+            {% else %}
+            <tr>
+                <th scope="col">祝日マスタが登録されていません</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<br><br>
+<form action="{{url_for('show_input')}}" method="post">
+    <button type="submit" class="btn btn-secondary"style= "background-color:blue">戻る</button>
+</form>
+</ul>
+{% endblock %}
