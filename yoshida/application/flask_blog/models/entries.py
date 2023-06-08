@@ -26,3 +26,14 @@ class Ojisan(db.Model):
     
     def __repr__(self):
         return '<Entry id:{} text{}>'.format(self.id, self.text)
+
+class ImageURL(db.Model):
+    __tablename__ = "imageURL"
+    id = db.Column(db.Integer, primary_key = True)
+    url = db.Column(db.Text)
+
+    def __init__(self, url=None):
+        self.url = url
+    
+    def __repr__(self):
+        return '<Entry id:{} url{}>'.format(self.id, self.url)
