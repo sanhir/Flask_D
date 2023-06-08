@@ -8,7 +8,7 @@ from holiday.models.mst_holiday import Entry
 @app.route('/')
 def show_entries():
     entries = Entry.query.all()
-    print(entries)
+    # print(entries)
     return render_template('input.html')
 
 #押されたボタンに応じて処理を実行
@@ -19,6 +19,18 @@ def add_entry():
     holi_date=request.form['date'],
     holi_text=request.form['text']
     )
+
+#     #####
+#     print(type(entry.holi_date))
+#     print(len(entry.holi_date))
+#     print(type(entry.holi_text))
+#     print(len(entry.holi_text))
+#     #####
+
+#     if entry.holi_date == "":
+#          print("naiyo-n")
+#     if entry.holi_text == None:
+#          print("textmonaiyo-n")
     #エラー処理
     if not(error_flash(entry,value)):
          return redirect(url_for('show_entries'))
@@ -58,12 +70,12 @@ def error_flash(entry,value):
 # @app.route('/<int:id>/update', methods=['POST'])
 def update_entry(entry):
     al_res = Entry.query.get(entry.holi_date)
-    if al_res == None:
-         print("aiueo")
+#     if al_res == None:
+#          print("aiueo")
     db.session.merge(entry)
     db.session.commit()
-    print(al_res)
-    print("122345")
+#     print(al_res)
+#     print("122345")
     if al_res == None:
         flash('新しく祝日が登録されました')
         return render_template('result.html',entry = entry, value = '登録')
