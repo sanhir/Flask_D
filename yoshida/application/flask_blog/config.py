@@ -1,6 +1,6 @@
 import os
 
-SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{user}:{password}@{host}/{database}?charset=utf8".format(**{
+SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{user}:{password}@{host}/{database}?charset=utf8mb4".format(**{
     "user": os.getenv("DB_USER", "root"),
     "password": os.getenv("DB_PASSWORD", "mysql"),
     "host": os.getenv("DB_HOST", "localhost"),

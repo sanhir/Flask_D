@@ -23,6 +23,7 @@ def login():
         else:
             session["logged_in"] = True
             flash("ログインしました")
+            print(session["logged_in"])
             return redirect(url_for("entry.show_entries"))
     return render_template("login.html")
 

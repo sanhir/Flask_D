@@ -8,8 +8,13 @@
 
     <div class="form-group">
         <label for="InputText">本文</label>
+        {% if ojisan == 0 %}
         <textarea class="form-control" id="InputText" name="text" rows="3"></textarea>
+        {% else %}
+        <textarea class="form-control" id="InputText" name="text" rows="3">{{ ojisan.text }}</textarea>
+        {% endif %}
     </div>
     <button type="submit" class="btn btn-primary">作成</button>
+    <button type="submit" class="btn btn-secondary" formaction="{{url_for('entry.generate_ojisan')}}">おじさん構文生成</button>
 </form>
 {% endblock %}

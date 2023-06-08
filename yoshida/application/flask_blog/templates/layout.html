@@ -28,6 +28,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('view.logout')}}">ログアウト</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('entry.show_ojisan') }}">おじさん構文一覧</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('entry.new_ojisan') }}">おじさん構文追加</a>
+                </li>
                 {% endif %}
             </ul>
         </div>
