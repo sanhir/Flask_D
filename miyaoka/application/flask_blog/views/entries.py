@@ -16,8 +16,11 @@ def show_entries():
 def add_entry():
     entry = Entry(
             title=request.form['title'],
-            text=request.form['text']
+            text=(request.form['text']).encode('shift-jis')
             )
+    # entry.text = entry.text.replace("\")
+    # entry.text = entry.text.encode('utf-8')
+    # print(entry.text)
     db.session.add(entry)
     db.session.commit()
     flash('新しく記事が作成されました')
