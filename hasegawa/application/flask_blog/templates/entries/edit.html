@@ -1,15 +1,29 @@
 {% extends "layout.html" %}
 {% block body %}
-<form action="{{url_for('entry.update_entry', id =entry.id)}}" method=post class=add-entry>
+<form action="{{url_for('update_entry', id =entry.id)}}" method=post class=add-entry>
     <div class="form-group">
-        <label for="InputTitle">タイトル</label>
-            <input type="text" class="form-control" id="InputTitle" name=title value={{entry.title}}>
+        <label for="InputTitle"><h2>タイトル</h2></label>
+            <textarea class="form-control" id="InputTitle" name=title value={{entry.title}}></textarea>
     </div>
+    <div class="tag">
+        <div id="h1">h1　</div>
+        <div id="h2">h2　</div>
+        <div id="p">p　</div>
+        <div id="br">br　</div>
+        <div id="img">img　</div>
+    </div>
+
     <div class="form-group">
-        <label for="InputText">本文</label>
+        <label for="InputText"><h2>本文</h2></label>
             <textarea class="form-control" id="InputText" name=text rows="3"> {{entry.text|safe}}</textarea>
-  
     </div>
     <button type="submit" class="btn btn-primary">更新</button>
+    <div id="write">
+        <h3>タイトル</h3>
+            <p id="title">{{txt_title}}</p>
+        <h3>本文</h3>
+            <p id="box">{{txt_text}}</p>     
+    </div>
 </form>
+<script type="text/javascript" src="{{ url_for('static', filename='js/sample1.js') }}"></script>
 {% endblock %}
