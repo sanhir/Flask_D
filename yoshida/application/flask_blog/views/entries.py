@@ -71,7 +71,11 @@ def generate_ojisan():
     else:
         rand_num = random.randint(1, oji_count)
         ojisan = Ojisan.query.get(rand_num)
-        return render_template('entries/new.html', ojisan=ojisan)
+        name = request.form.get('name')
+        # print(name)
+        oji_text = ojisan.text.replace('name', name)
+        # print(ojisan)
+        return render_template('entries/new.html', oji_text=oji_text)
 
 @entry.route('/entries/show_ojisan', methods = ['POST','GET'])
 @login_required
@@ -96,7 +100,7 @@ def new_ojisan():
     return render_template('entries/new_ojisan.html')
 
 
-@entry.route('/entries/delete_ojisan', methods = ['POST','GET'])
+@entry.route('/entries/delete_ojisan/<id>', methods = ['POST','GET'])
 @login_required
 def delete_ojisan(id):
     print(id)
