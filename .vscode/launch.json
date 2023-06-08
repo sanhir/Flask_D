@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "kawakami/application/server.py",
+                "FLASK_APP": "kawakami/holiday_app/server.py",
                 "FLASK_DEBUG": "1"
             },
             "args": [
