@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+<div class="form-group">
+    <label for="InputEqip">スキル名</label>
+    <input type="text" class="form-control" id="Inputequip" name=skill_name>
+    </div>
+    
+    <div class="form-group">
+        <label for="InputSkill">スキルのポイント</label>
+        <input type="number" value="5" min="5" max="50" step="5" class="form-control" id="Inputequippoint" name=skill_point>
+    </div>
+    
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary" name="button" value="add_skill">新規登録・更新</button>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" name="button" value="del_skill">削除</button>
+    </div>
+    <br>
+    <a href="{{url_for('show_entries')}}">
+        <button type="button" class="btn btn-primary">戻る</button>
+    </a>
+
+    {% endblock %}
