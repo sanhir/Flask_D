@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+<ul class="list-group list-group-flush">
+    {% for oji_list in ojisan %}
+    <div class="card">
+        <form action="{{url_for('entry.delete_ojisan', id=oji_list.id)}}" method="post">
+            <div class="card-body">
+                <h5 class="card-title">{{oji_list.text}}</h5>
+                <p>{{oji_list.id}}</p>
+                <button type="submit" class="btn btn-danger" style="margin-left: 5px;">削除</button>
+            </div>
+        </form>
+    </div>
+    {% else %}
+    投稿がありません
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -3,10 +3,5 @@ from holiday import app
 
 @app.route("/", methods=["GET", "POST"])
 def input():
+    print("in")
     return render_template("input.html")
-
-@app.route("/logout")
-def logout():
-    session.pop("logged_in", None)
-    flash("ログアウトしました")
-    return redirect(url_for("show_entries"))

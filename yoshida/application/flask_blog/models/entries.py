@@ -15,3 +15,14 @@ class Entry(db.Model):
     
     def __repr__(self):
         return '<Entry id:{} title{} text{}>'.format(self.id, self.title, self.text)
+
+class Ojisan(db.Model):
+    __tablename__ = "ojisan"
+    id = db.Column(db.Integer, primary_key = True)
+    text = db.Column(db.Text)
+
+    def __init__(self, text=None):
+        self.text = text
+    
+    def __repr__(self):
+        return '<Entry id:{} text{}>'.format(self.id, self.text)
