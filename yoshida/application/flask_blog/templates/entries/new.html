@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 <form action="{{url_for('entry.add_entry')}}" method="post" class="add-entry">
-    <div class=""form-group>
+    <div class="form-group">
         <label for="InputTitle">タイトル</label>
         <input type="text" class="form-control" id="InputTitle" name="title">
     </div>
@@ -11,10 +11,17 @@
         {% if ojisan == 0 %}
         <textarea class="form-control" id="InputText" name="text" rows="3"></textarea>
         {% else %}
-        <textarea class="form-control" id="InputText" name="text" rows="3">{{ ojisan.text }}</textarea>
+        <textarea class="form-control" id="InputText" name="text" rows="3">{{ oji_text }}</textarea>
         {% endif %}
     </div>
     <button type="submit" class="btn btn-primary">作成</button>
-    <button type="submit" class="btn btn-secondary" formaction="{{url_for('entry.generate_ojisan')}}">おじさん構文生成</button>
+</form>
+<br><br>
+<form action="{{url_for('entry.generate_ojisan')}}" method="post">
+    <div class="form-group">
+        <label for="InputTitle">名前を入力</label>
+        <input type="text" class="form-control" name="name">
+    </div>
+    <button type="submit" class="btn btn-secondary">おじさん構文生成</button>
 </form>
 {% endblock %}
