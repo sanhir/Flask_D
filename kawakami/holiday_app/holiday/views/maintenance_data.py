@@ -7,12 +7,27 @@ from holiday.models.mst_holiday import Holiday
 @app.route('/input',methods = ['POST'])
 def entry():
     # 祝日 日付が入力されていたら、値をsessionに保存
-    if "holiday" in request.form:
-        session["holiday"]=request.form["holiday"]
-    # 未入力の場合flashを表示しhomeへ戻す
-    else:
+    # print(request.form["holiday"])
+    # if "holiday" in request.form and "holiday" == request.form["holiday"]:
+    #     print(request.form)
+    #     session["holiday"]=request.form["holiday"]
+    #     print("ああああ"+session["holiday"])
+    # else:
+    #     flash("祝日 日付が未入力です。日付を選択してください。")
+    #     return redirect(url_for('home'))
+
+    # if "holiday" in request.form:
+    if request.form["holiday"] == "":
         flash("祝日 日付が未入力です。日付を選択してください。")
         return redirect(url_for('home'))
+    else:
+        print(request.form)
+        session["holiday"]=request.form["holiday"]
+        print("ああああ"+session["holiday"])
+    # else:
+    #     print("ゆなち")
+    #     return redirect(url_for('home')) 
+
     # 新規投稿・更新ボタンを押下されたらinsert_update関数を処理
     if request.form["button"]=="insert_update":
         return insert_update()
@@ -25,7 +40,7 @@ def entry():
 # 新規登録・更新ボタンを押下されたらデータベースを更新し、result.htmlを返す
 def insert_update():
     entry = Holiday.query.get(session["holiday"])
-    if "holiday_text" not in request.form :
+    if request.form["holiday_text"] == "":
         flash("祝日 テキストを入力してください。")
         return redirect(url_for('home'))
     elif len(request.form["holiday_text"]) > 20:
@@ -37,7 +52,14 @@ def insert_update():
         db.session.commit()
         info=f"{entry.holi_date}は「{entry.holi_text}」に更新されました"
         return render_template('result.html',infomessage=info)
+    # データベースに値がなければholiday_textをテーブルのholi_textに登録する
     else:
+        holiday = Holiday(
+            holi_date = request.form["holiday"],
+            holi_text = request.form["holiday_text"]
+        )
+        db.session.add(holiday)
+        db.session.commit()
         info=f'{request.form["holiday"]}（{request.form["holiday_text"]}）が登録されました'
         return render_template('result.html',infomessage=info)
 
