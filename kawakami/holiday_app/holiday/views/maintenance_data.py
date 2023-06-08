@@ -6,26 +6,15 @@ from holiday.models.mst_holiday import Holiday
 
 @app.route('/input',methods = ['POST'])
 def entry():
-    # 祝日 日付が入力されていたら、値をsessionに保存
-    # print(request.form["holiday"])
-    # if "holiday" in request.form and "holiday" == request.form["holiday"]:
-    #     print(request.form)
-    #     session["holiday"]=request.form["holiday"]
-    #     print("ああああ"+session["holiday"])
-    # else:
-    #     flash("祝日 日付が未入力です。日付を選択してください。")
-    #     return redirect(url_for('home'))
-
     # if "holiday" in request.form:
+    # 日付が未入力ならhomeに戻す
     if request.form["holiday"] == "":
         flash("祝日 日付が未入力です。日付を選択してください。")
         return redirect(url_for('home'))
+    # 日付が入力されていたらholidayをsessionに保存
     else:
-        print(request.form)
         session["holiday"]=request.form["holiday"]
-        print("ああああ"+session["holiday"])
     # else:
-    #     print("ゆなち")
     #     return redirect(url_for('home')) 
 
     # 新規投稿・更新ボタンを押下されたらinsert_update関数を処理

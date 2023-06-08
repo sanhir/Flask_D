@@ -9,5 +9,4 @@ def home():
 # 戻るボタンを押下されたらinput.htmlを返す
 @app.route('/back', methods=['POST'])
 def back():
-    print("あああ")
     return render_template('/input.html')
