@@ -4,4 +4,4 @@ from holiday.models.mst_holiday import Holiday
 
 @app.route("/")
 def show_input():
-    hoge
+    return render_template("input.html")
