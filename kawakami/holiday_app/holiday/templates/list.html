@@ -1,4 +1,27 @@
 {% extends "layout.html" %}
 {% block body %}
-
+<form action="{{url_for('back')}}", method="post">
+    <table class="table" >
+        <thead class="table-primary">
+            <tr>
+                <th scope="col">祝日</th>
+                <th scope="col">テキスト</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for listdata in holidaylist %}
+            <tr>
+                <th>
+                {{listdata.holi_date}}
+                </th>
+                <td>
+                {{listdata.holi_text}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!--戻るボタン-->
+    <button type="submit" class="btn btn-primary" style="margin-bottom:10px">戻る</button>
+</form>
 {% endblock %}

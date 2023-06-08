@@ -2,11 +2,11 @@
 {% block body %}
 
 <h2>処理結果</h2>
-<form action="/" method=post>
+<form action="{{url_for('back')}}", method=post>
     <div class="form-group">
         <p>{{infomessage}}</p>
         <!--戻るボタン-->
-        <button typ="submit" class="btn btn-output" name="btn_list" value="btn_list">戻る</button>
+        <button typ="submit" class="btn btn-primary" style="margin-bottom:10px">戻る</button>
     </div>
         
 </form>
