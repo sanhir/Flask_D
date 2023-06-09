@@ -1,4 +1,5 @@
 document.body.addEventListener("keyup", () => {
+    
     document.getElementById("box").innerHTML = document.getElementById("InputText").value;
 });
     
@@ -34,6 +35,6 @@ document.getElementById("a").addEventListener("click", () => {
     document.getElementById("InputText").value += '<a href="url"></a>';
 });
 
-document.getElementById("img").addEventListener("click", () => {
+document.getElementById("imgsrc").addEventListener("click", () => {
     document.getElementById("InputText").value += "<img src='img/ここにimgの名前'>";
 });
